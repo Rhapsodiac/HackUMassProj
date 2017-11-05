@@ -1,0 +1,3 @@
+Accuracy Score: 0.9992849763569552
+
+This value represents the accuracy to which the trained Linear Regression model predicts the values of test data, after having been trained with training data.

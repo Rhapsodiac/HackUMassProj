@@ -1,0 +1,33 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    Low   R-squared:                       0.999
+Model:                            OLS   Adj. R-squared:                  0.999
+Method:                 Least Squares   F-statistic:                 4.762e+05
+Date:                Sat, 04 Nov 2017   Prob (F-statistic):               0.00
+Time:                        23:32:05   Log-Likelihood:                -7526.2
+No. Observations:                1637   AIC:                         1.506e+04
+Df Residuals:                    1631   BIC:                         1.510e+04
+Df Model:                           5                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          4.7940      1.093      4.387      0.000       2.651       6.937
+Open           0.2644      0.019     14.201      0.000       0.228       0.301
+Close          0.5405      0.014     38.744      0.000       0.513       0.568
+Variance      65.3629     18.207      3.590      0.000      29.652     101.074
+Volume     -8.213e-08    2.9e-09    -28.355      0.000   -8.78e-08   -7.65e-08
+Market      1.187e-08   7.36e-10     16.128      0.000    1.04e-08    1.33e-08
+==============================================================================
+Omnibus:                      822.642   Durbin-Watson:                   1.547
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            35212.407
+Skew:                          -1.643   Prob(JB):                         0.00
+Kurtosis:                      25.482   Cond. No.                     6.04e+11
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 6.04e+11. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+The regression shows that the Variance field is by far the mostly strongly correlated.

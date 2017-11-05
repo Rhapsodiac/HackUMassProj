@@ -1,0 +1,6 @@
+140.3551448066157,142.52012249501692,148.40293524909626,139.72147923310413,118.78445171970249
+These are peak-high values predicted by an alternative means of calculating linear regression with SKLearn.
+
+130.39851077346998,140.7418765798369,134.622476866797,110.80486961801093,100.8382820715599
+These are peak-low values predicted by an alternative means of calculating linear regression with SKLearn.
+

@@ -1,0 +1,35 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 Market   R-squared:                       0.998
+Model:                            OLS   Adj. R-squared:                  0.998
+Method:                 Least Squares   F-statistic:                 1.108e+05
+Date:                Sat, 04 Nov 2017   Prob (F-statistic):               0.00
+Time:                        23:32:05   Log-Likelihood:                -35726.
+No. Observations:                1637   AIC:                         7.147e+04
+Df Residuals:                    1629   BIC:                         7.151e+04
+Df Model:                           7                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const      -6.896e+08   3.53e+07    -19.536      0.000   -7.59e+08    -6.2e+08
+High       -6.346e+06   9.41e+05     -6.745      0.000   -8.19e+06    -4.5e+06
+Low         7.494e+06   8.64e+05      8.674      0.000     5.8e+06    9.19e+06
+Open        1.605e+07   7.41e+05     21.670      0.000    1.46e+07    1.75e+07
+Close      -1.008e+06   8.14e+05     -1.239      0.215    -2.6e+06    5.88e+05
+Variance   -1.536e+08   5.69e+08     -0.270      0.787   -1.27e+09    9.62e+08
+Volume         2.1181      0.109     19.488      0.000       1.905       2.331
+Volatility -1.919e+09   5.38e+08     -3.566      0.000   -2.97e+09   -8.63e+08
+==============================================================================
+Omnibus:                      410.099   Durbin-Watson:                   0.215
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              902.299
+Skew:                          -1.408   Prob(JB):                    1.17e-196
+Kurtosis:                       5.303   Cond. No.                     1.88e+10
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 1.88e+10. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+The regression shows that the Volume field is the mostly strongly correlated.

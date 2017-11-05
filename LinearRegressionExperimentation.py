@@ -1,19 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-Spyder Editor
-
-This is a temporary script file.
-"""
-
-import csv
 import matplotlib.pyplot as plt
-from datetime import datetime
 import numpy as np
 import statsmodels.api as sm
 import pandas as pd
-from sklearn import datasets, linear_model
+from sklearn import linear_model
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score
 
 datasetPD = pd.read_csv("BitcoinOnly.csv", 
                         parse_dates=[0],
@@ -38,7 +28,13 @@ predictionsHigh = modelHigh.predict(X1)
 modelLow= sm.OLS(y2, X1).fit()
 predictionsLow = modelLow.predict(X1)
  
+filePredictHigh = open("predictPeakHighPandas.txt", "w")
+filePredictHigh.write(modelHigh.summary().as_text()) 
+filePredictHigh.write("\n\nThe regression shows that the Variance field is the most strongly correlated.")
 print(modelHigh.summary())
+filePredictLow = open("predictPeakLowPandas.txt", "w")
+filePredictLow.write(modelLow.summary().as_text())
+filePredictLow.write("\n\nThe regression shows that the Variance field is by far the mostly strongly correlated.")
 print(modelLow.summary())
  
 lmHigh = linear_model.LinearRegression()
@@ -49,6 +45,11 @@ lmLow = linear_model.LinearRegression()
 modelLow = lmLow.fit(X1, y2)
 predLow = lmLow.predict(X1)
  
+filePredictHighLow = open("predictHighLowSKLearn.txt", "w")
+predHigh[0:5].tofile(filePredictHighLow, ",")
+filePredictHighLow.write("\nThese are peak-high values predicted by an alternative means of calculating linear regression with SKLearn.\n\n")
+predLow[0:5].tofile(filePredictHighLow, ",")
+filePredictHighLow.write("\nThese are peak-low values predicted by an alternative means of calculating linear regression with SKLearn.\n\n")
 print(predHigh[0:5])
 print(lmHigh.intercept_)
 print(predLow[0:5])
@@ -61,6 +62,9 @@ X2 = sm.add_constant(X2)
  
 modelVol = sm.OLS(y3, X2).fit()
 predictionsVol = modelVol.predict(X2)
+filePredictVol = open("predictVolatilityPandas.txt", "w")
+filePredictVol.write(modelVol.summary().as_text())
+filePredictVol.write("\n\nThe regression shows that the Variance field is the mostly strongly correlated.")
 print(modelVol.summary()) 
 
 targetMark = pd.DataFrame(datasetPD, columns=["Market"])
@@ -70,6 +74,9 @@ X3 = sm.add_constant(X3)
  
 modelMark = sm.OLS(y4, X3).fit()
 predictionsMark = modelMark.predict(X3)
+filePredictMark = open("predictMarketPandas.txt", "w")
+filePredictMark.write(modelMark.summary().as_text())
+filePredictMark.write("\n\nThe regression shows that the Volume field is the mostly strongly correlated.")
 print(modelMark.summary())
 
 targetHigh = pd.DataFrame(datasetPD, columns=["High"])
@@ -77,7 +84,6 @@ targetClose= pd.DataFrame(datasetPD, columns=["Close"])
 
 X4 = predictors[["Open", "Variance", "Volume", "Market", "Volatility"]]
 y5 = targetHigh["High"]
-y6 = targetClose["Close"]
 
 X_train, X_test, y_train, y_test = train_test_split(X4, y5, test_size=0.2)
 
@@ -85,14 +91,14 @@ lm = linear_model.LinearRegression()
 modelOpen = lm.fit(X_train, y_train)
 predictionsOpen = lm.predict(X_test)
 
+filePredictHighTrained = open("predictHighTrained.txt", "w")
+filePredictHighTrained.write("Accuracy Score: ")
+modelOpen.score(X_test, y_test).tofile(filePredictHighTrained, ",")
+filePredictHighTrained.write("\n\nThis value represents the accuracy to which the trained Linear Regression model predicts the values of test data, after having been trained with training data.")
 print("Score:", modelOpen.score(X_test, y_test))
 
-plt.scatter(y_test, predictionsOpen)
+fig = plt.scatter(y_test, predictionsOpen)
 plt.xlabel("True Values")
 plt.ylabel("Predictions")
-
-lmVol = linear_model.LinearRegression()
-modelVol = lmVol.fit(X2, y3)
-predVol = lmVol.predict(X2)
-print("SKLearn predicted values", predVol[0:5])
+plt.savefig("accuracyScoreTrainedModel.png")
 
